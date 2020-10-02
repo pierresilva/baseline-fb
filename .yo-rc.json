@@ -1,0 +1,44 @@
+{
+  "generator-ngx-rocket": {
+    "version": "9.0.0",
+    "props": {
+      "location": "path",
+      "strict": false,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "usePrefix": true,
+      "appName": "baseline",
+      "target": [
+        "web",
+        "cordova"
+      ],
+      "pwa": true,
+      "mobile": [
+        "ios",
+        "android"
+      ],
+      "ui": "bootstrap",
+      "auth": true,
+      "lazy": true,
+      "angulartics": false,
+      "languages": [
+        "en-US",
+        "es-ES"
+      ],
+      "tools": [
+        "prettier",
+        "hads"
+      ],
+      "utility": [
+        "lodash",
+        "moment",
+        "datefns"
+      ],
+      "deploy": "none",
+      "projectName": "baseline",
+      "packageManager": "npm",
+      "desktop": []
+    }
+  }
+}
