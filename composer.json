@@ -13,7 +13,9 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "pierresilva/laravel-access-control": "dev-master",
+        "pierresilva/laravel-jwt-auth": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",
