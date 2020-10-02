@@ -22,12 +22,12 @@
       ],
       "baseUrl": "./",
       "paths": {
-        "@app/*": ["src/app/*"],
-          "@core": ["src/app/@core"],
-        "@core/*": ["src/app/@core/*"],
-        "@shared": ["src/app/@shared"],
-        "@shared/*": ["src/app/@shared/*"],
-          "@env/*": ["src/environments/*"]
+        "@app/*": ["angular/app/*"],
+          "@core": ["angular/app/@core"],
+        "@core/*": ["angular/app/@core/*"],
+        "@shared": ["angular/app/@shared"],
+        "@shared/*": ["angular/app/@shared/*"],
+          "@env/*": ["angular/environments/*"]
       }
     },
     "angularCompilerOptions": {
@@ -36,4 +36,3 @@
       "preserveWhitespaces": true
     }
   }
-  

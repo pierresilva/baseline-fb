@@ -52,8 +52,8 @@ yarn-error.log
 testem.log
 /typings
 /reports
-/src/translations/template.*
-/src/environments/.env.*
+/angular/translations/template.*
+/angular/environments/.env.*
 
 # System Files
 .DS_Store
