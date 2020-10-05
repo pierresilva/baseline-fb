@@ -1,4 +1,4 @@
-<div class="login-container bg-light">
+<div class="login-container">
   <div class="login-box">
     <h1 translate>APP_NAME</h1>
     <div>
@@ -8,61 +8,58 @@
       </div>
     </div>
     <div class="container">
-      <div class="card col-md-6 mt-3 mx-auto">
+      <div class="card col-md-6 mt-3 mx-auto shadow">
         <div class="card-body">
-          <h4 class="card-title text-center">
+          <h4 class="card-title text-center pb-3">
             <i class="far fa-3x fa-user-circle text-muted"></i>
           </h4>
-          <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
-            <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
-              Username or password incorrect.
-            </div>
+          <form (ngSubmit)="login()"
+                [formGroup]="loginForm"
+                novalidate>
+            <div class="alert alert-danger pb-3"
+                 [hidden]="!error || isLoading"
+                 translate>Correo electrónico o contraseña incorrectos.</div>
             <div class="form-group">
-              <label class="d-block">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="username"
-                  autocomplete="username"
-                  [placeholder]="'Username' | translate"
-                />
-                <span hidden translate>Username</span>
-                <small
-                  [hidden]="loginForm.controls.username.valid || loginForm.controls.username.untouched"
-                  class="text-danger"
-                  translate
-                >
-                  Username is required
-                </small>
+              <label class="d-block pb-3">
+                <input type="text"
+                       class="form-control"
+                       formControlName="username"
+                       autocomplete="username"
+                       [placeholder]="'Correo electrónico' | translate">
+                <span hidden
+                      translate>Correo electrónico</span>
+                <small [hidden]="loginForm.controls.username.valid || loginForm.controls.username.untouched"
+                       class="text-danger"
+                       translate>El campo correo electrónico es requerido</small>
               </label>
-              <label class="d-block">
-                <input
-                  type="password"
-                  class="form-control"
-                  formControlName="password"
-                  autocomplete="current-password"
-                  [placeholder]="'Password' | translate"
-                  required
-                />
-                <span hidden translate>Password</span>
-                <small
-                  [hidden]="loginForm.controls.password.valid || loginForm.controls.password.untouched"
-                  class="text-danger"
-                  translate
-                >
-                  Password is required
-                </small>
+              <label class="d-block pb-3">
+                <input type="password"
+                       class="form-control"
+                       formControlName="password"
+                       autocomplete="current-password"
+                       [placeholder]="'Contraseña' | translate"
+                       required>
+                <span hidden
+                      translate>Contraseña</span>
+                <small [hidden]="loginForm.controls.password.valid || loginForm.controls.password.untouched"
+                       class="text-danger"
+                       translate>El campo contraseña es requerido.</small>
               </label>
-              <div class="form-check">
+              <div class="form-check pb-3">
                 <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" formControlName="remember" />
-                  <span translate>Remember me</span>
+                  <input type="checkbox"
+                         class="form-check-input fs-3 mr-2"
+                         formControlName="remember"/>
+                  <span translate>Recordarme</span>
                 </label>
               </div>
             </div>
-            <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid || isLoading">
-              <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
-              <span translate>Login</span>
+            <button class="btn btn-primary w-100"
+                    type="submit"
+                    [disabled]="loginForm.invalid || isLoading">
+              <i class="fas fa-spinner fa-spin"
+                 [ngStyle]="{'display': (isLoading ? 'inline-block' : 'none')}"></i>
+              <span translate>Iniciar sesión</span>
             </button>
           </form>
         </div>

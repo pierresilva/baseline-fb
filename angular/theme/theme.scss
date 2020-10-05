@@ -2,3 +2,281 @@
  * Global application theme.
  * Framework overrides and customization goes here.
  */
+:root {
+  --card-group-bg: var(--light-400);
+  --card-hover-bg: var(--white);
+  --highlight-bg: var(--light-400);
+}
+
+.dark {
+    --card-group-bg: var(--dark-500);
+    --card-hover-bg: var(--dark-200);
+    --highlight-bg: var(--dark-500);
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 1em;
+}
+
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: auto;
+  font-size: .875em;
+}
+
+pre code {
+  font-size: inherit;
+  color: inherit;
+  word-break: normal;
+}
+
+code {
+  font-size: .875em;
+  color: hsl(330, 67%, 52%);
+  word-wrap: break-word;
+}
+
+@media (min-width: 992px) {
+  .col-lg-2-alt {
+    flex: 0 0 auto;
+    width: calc((100%) / (16/2));
+  }
+}
+
+.nav-tabs {
+  background-color: var(--card-group-bg);
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link.show {
+  background-color: var(--card-hover-bg);
+}
+
+.nav-tabs .nav-link[aria-expanded="true"] {
+  color: var(--link-color);
+}
+
+.card-group {
+  padding: var(--spacer-5);
+  background-color: var(--card-group-bg);
+  border-radius: .5rem;
+}
+
+.card-group .card {
+  background-color: transparent;
+  box-shadow: none;
+  transition-timing-function: linear;
+  transition-duration: .16s;
+  transition-property: background-color, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-group .card {
+    transition: none;
+  }
+}
+
+.card-group .card:hover {
+  background-color: var(--card-hover-bg);
+  transform: scale(1.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-group .card:hover {
+    transform: none;
+  }
+}
+
+.highlight {
+  padding: var(--spacer-5);
+  background-color: var(--highlight-bg);
+  border-radius: .5rem;
+}
+
+code:not([class*="language-"]) {
+  font-weight: 600;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  font-size: 1em;
+  color: var(--headings-color);
+}
+
+@media (prefers-color-scheme: light) {
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: hsl(210, 13%, 50%);
+  }
+  .token.punctuation {
+    color: hsl(0, 0%, 60%);
+  }
+  .token.namespace {
+    opacity: .7;
+  }
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: hsl(327, 100%, 30%);
+  }
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: hsl(80, 100%, 30%);
+  }
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    color: hsl(33, 45%, 42%);
+  }
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: hsl(198, 100%, 33%);
+  }
+  .token.function,
+  .token.class-name {
+    color: hsl(348, 68%, 58%);
+  }
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: hsl(39, 100%, 47%);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: hsl(210, 15%, 57%);
+  }
+  .token.punctuation {
+    color: hsl(60, 30%, 96%);
+  }
+  .token.namespace {
+    opacity: .7;
+  }
+  .token.property,
+  .token.tag,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: hsl(338, 95%, 56%);
+  }
+  .token.boolean,
+  .token.number {
+    color: hsl(261, 100%, 75%);
+  }
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: hsl(80, 76%, 53%);
+  }
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string,
+  .token.variable {
+    color: hsl(60, 30%, 96%);
+  }
+  .token.atrule,
+  .token.attr-value,
+  .token.function,
+  .token.class-name {
+    color: hsl(54, 70%, 68%);
+  }
+  .token.keyword {
+    color: hsl(190, 81%, 67%);
+  }
+  .token.regex,
+  .token.important {
+    color: hsl(32, 98%, 56%);
+  }
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.callout {
+  padding: var(--spacer-5);
+  margin: 0;
+  background-color: var(--fill-bg);
+  border-left-style: solid;
+  border-left-width: 4px;
+  border-radius: .5rem;
+}
+
+.callout-primary {
+  border-left-color: var(--primary);
+}
+
+.callout-secondary {
+  border-left-color: var(--secondary);
+}
+
+.callout-success {
+  border-left-color: var(--success);
+}
+
+.callout-info {
+  border-left-color: var(--info);
+}
+
+.callout-warning {
+  border-left-color: var(--warning);
+}
+
+.callout-danger {
+  border-left-color: var(--danger);
+}
+
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+}
+
+@media (min-width: 1200px) {
+  .mx-xl-n5 {
+    margin-right: calc(var(--spacer-5) / -1) !important;
+    margin-left: calc(var(--spacer-5) / -1) !important;
+  }
+}
+

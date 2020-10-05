@@ -15,11 +15,11 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link text-uppercase" routerLink="/home" routerLinkActive="active">
           <i class="fas fa-home"></i>
-          <span translate>Home</span>
+          <span translate>Inicio</span>
         </a>
         <a class="nav-item nav-link text-uppercase" routerLink="/about" routerLinkActive="active">
           <i class="fas fa-question-circle"></i>
-          <span translate>About</span>
+          <span translate>Nosotros</span>
         </a>
       </div>
       <div class="navbar-nav ml-auto">
@@ -30,10 +30,10 @@
           </a>
           <div ngbDropdownMenu aria-labelledby="user-dropdown" class="dropdown-menu dropdown-menu-right">
             <h6 class="dropdown-header">
-              <span translate>Logged in as</span> <b>{{ username }}</b>
+              <span translate>Ingresó como</span> <b>{{ username }}</b>
             </h6>
             <div class="dropdown-divider"></div>
-            <button class="dropdown-item" (click)="logout()" translate>Logout</button>
+            <button class="dropdown-item" (click)="logout()" translate>Salir</button>
           </div>
         </div>
       </div>

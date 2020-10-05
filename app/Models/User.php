@@ -39,6 +39,39 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property-read \Illuminate\Database\Eloquent\Collection|\pierresilva\AccessControl\Models\Role[] $roles
  * @property-read int|null $roles_count
  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class User extends Authenticatable implements JWTSubject
 {
     use AccessControlTrait, HasFactory, Notifiable;
@@ -92,4 +125,1786 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+            'model.company_id' => 'integer|nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
+	// Validate Rule
+    public static function getValidateRule(User $user=null){
+        if($user){
+            $ignore_unique = $user->id;
+        }else{
+            $ignore_unique = 'NULL';
+        }
+        $table_name = 'users';
+        $validation_rule = [
+
+            'model.company_id' => 'integer|nullable',
+            'model.name' => 'required',
+            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.password' => 'confirmed|required',
+            'model.birth_day' => 'nullable',
+            'model.phone' => 'nullable',
+
+        	'pivots.hobby.*.skill_level' => 'integer|nullable',
+        	'pivots.hobby.*.firend_name' => 'required',
+
+        ];
+        if($user){
+            $validation_rule['model.password'] = str_replace( 'required', '', $validation_rule['model.password'] );
+            $validation_rule['model.password'] = str_replace( '||', '|', $validation_rule['model.password'] );
+
+        }
+        return $validation_rule;
+    }
+
+	public function dogs() {
+		return $this->hasMany('App\Dog');
+	}
+
+
+	public function company() {
+		return $this->belongsTo('App\Company');
+	}
+
+
+	public function hobbies() {
+		return $this->belongsToMany('App\Hobby')
+		->withPivot('skill_level','firend_name')
+		->orderBy('id')
+		->withTimestamps();
+	}
+
+
+	public static function getLists() {
+		$lists = [];
+		$lists['Company'] = Company::pluck( 'name' ,'id' );
+		$lists['Dog'] = Dog::pluck( 'name' ,'id' );
+		$lists['Hobby'] = Hobby::pluck( 'name' ,'id' );
+		return $lists;
+	}
 }

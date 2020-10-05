@@ -26,6 +26,12 @@ export class AuthenticationService {
    */
   login(context: LoginContext): Observable<Credentials> {
     // Replace by proper authentication call
+    if (context.username !== 'admin' || context.password !== '12345') {
+      setTimeout(() => {
+
+      }, 2000);
+      return;
+    }
     const data = {
       username: context.username,
       token: '123456',
