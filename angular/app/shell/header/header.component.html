@@ -1,42 +1,367 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="https://github.com/ngx-rocket" translate>APP_NAME</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      aria-controls="navbar-menu"
-      aria-label="Toggle navigation"
-      (click)="toggleMenu()"
-      [attr.aria-expanded]="!menuHidden"
-    >
+<nav class="navside navside-expand-xl sticky-top navbar-dark">
+  <div class="container invisible-scrollbar p-3">
+    <a class="link-body"
+       routerLink="/">
+      <img src="assets/ngx-rocket-logo.png"
+           style="max-width: 48px;"
+           alt="">
+      <h1 class="d-inline fs-2 ml-3"
+          translate>APP_NAME</h1>
+    </a>
+    <button class="navside-toggler"
+            data-toggle="collapse"
+            data-target="#navsideSupportedContent"
+            type="button">
+      <i class="fas fa-bars fs-3"></i>
+    </button>
+    <div class="collapse navside-collapse"
+         id="navsideSupportedContent">
+
+      <ul class="nav-tabs nav flex-column my-1 mt-lg-3 mb-lg-0"
+          style="top: var(--spacer-5); padding: .75rem;">
+        <li class="nav-item">
+          <a class="nav-link"
+             data-toggle="collapse"
+             style="padding: .75rem;"
+             href="#getting-started"
+             role="button"
+             aria-expanded="true"
+             aria-current="true"
+             aria-controls="getting-started">Getting started</a>
+          <ul class="collapse list-unstyled"
+              id="getting-started">
+            <li class="nav-item">
+              <a class="nav-link active pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/getting-started/introduction/"
+                 aria-current="page">Introduction</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             data-toggle="collapse"
+             style="padding: .75rem;"
+             href="#layout"
+             role="button"
+             aria-expanded="false"
+             aria-controls="layout">Layout</a>
+          <ul class="collapse list-unstyled"
+              id="layout">
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/layout/breakpoints/">Breakpoints</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/layout/containers/">Containers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/layout/grid/">Grid</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             data-toggle="collapse"
+             style="padding: .75rem;"
+             href="#content"
+             role="button"
+             aria-expanded="false"
+             aria-controls="content">Content</a>
+          <ul class="collapse list-unstyled"
+              id="content">
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/content/typography/">Typography</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/content/images/">Images</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             data-toggle="collapse"
+             style="padding: .75rem;"
+             href="#components"
+             role="button"
+             aria-expanded="false"
+             aria-controls="components">Components</a>
+          <ul class="collapse list-unstyled"
+              id="components">
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/components/buttons/">Buttons</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/components/cards/">Cards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/components/collapse/">Collapse</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/components/dropdowns/">Dropdowns</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/components/forms/">Forms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/components/input-group/">Input group</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/components/modal/">Modal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/components/navs/">Navs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/components/navbar/">Navbar</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             data-toggle="collapse"
+             style="padding: .75rem;"
+             href="#helpers"
+             role="button"
+             aria-expanded="false"
+             aria-controls="helpers">Helpers</a>
+          <ul class="collapse list-unstyled"
+              id="helpers">
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/helpers/clearfix/">Clearfix</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/helpers/colored-links/">Colored links</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/helpers/position/">Position</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/helpers/visually-hidden/">Visually hidden</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             data-toggle="collapse"
+             style="padding: .75rem;"
+             href="#utilities"
+             role="button"
+             aria-expanded="false"
+             aria-controls="utilities">Utilities</a>
+          <ul class="collapse list-unstyled"
+              id="utilities">
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/borders/">Borders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/colors/">Colors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/display/">Display</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/flex/">Flex</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/float/">Float</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/overflow/">Overflow</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/position/">Position</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/shadows/">Shadows</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/sizing/">Sizing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/spacing/">Spacing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/text/">Text</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/vertical-align/">Vertical align</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/utilities/visibility/">Visibility</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             data-toggle="collapse"
+             style="padding: .75rem;"
+             href="#extend"
+             role="button"
+             aria-expanded="false"
+             aria-controls="extend">Extend</a>
+          <ul class="collapse list-unstyled"
+              id="extend">
+            <li class="nav-item">
+              <a class="nav-link pl-4"
+                 style="padding: .75rem;"
+                 href="https://grayshift.io/docs/extend/approach/">Approach</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="navside-nav flex-grow-1 p-0 pb-3">
+        <li class="nav-item dropdown">
+          <a class="nav-link d-flex align-items-baseline justify-content-between"
+             id="navsideDropdownOne"
+             data-toggle="dropdown"
+             data-display="static"
+             href="#">
+            Dropdown
+            <svg class="gi gi-arrow-down"
+                 width="1em"
+                 height="1em"
+                 viewBox="0 0 24 24"
+                 fill="currentColor"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path
+                    d="M10.882 16.158a2 2 0 0 0 2.565-.279l.114-.13 4-5a2 2 0 0 0-1.412-3.244L16 7.5H8a2 2 0 0 0-1.659 3.117l.097.132 4 5a2 2 0 0 0 .201.216l.112.096.132.097z" />
+            </svg>
+          </a>
+          <div class="dropdown-menu"
+               aria-labelledby="navsideDropdownOne">
+            <a class="dropdown-item"
+               href="#">Action</a>
+            <a class="dropdown-item"
+               href="#">Another action</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="w-100">
+        <div style="float: left;"
+             class="pt-2 pb-lg-2 mr-2">
+          <span class="p-2 align-items-center justify-content-center text-white text-uppercase bg-primary rounded-circle right"
+                style="width: 3rem; height: 3rem; font-size: 1.125rem;">JS</span>
+        </div>
+        <div class="right">
+          joan.stevenson@gmail.com<br>
+          Joan Stevenson
+        </div>
+      </div>
+
+
+    </div>
+    <!-- <button class="navbar-toggler"
+            type="button"
+            aria-controls="navbar-menu"
+            aria-label="Toggle navigation"
+            (click)="toggleMenu()"
+            [attr.aria-expanded]="!menuHidden">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div id="navbar-menu" class="collapse navbar-collapse float-xs-none" [ngbCollapse]="menuHidden">
+    <div id="navbar-menu"
+         class="collapse navbar-collapse float-xs-none"
+         [ngbCollapse]="menuHidden">
       <div class="navbar-nav">
-        <a class="nav-item nav-link text-uppercase" routerLink="/home" routerLinkActive="active">
+        <a class="nav-item nav-link text-uppercase"
+           routerLink="/home"
+           routerLinkActive="active">
           <i class="fas fa-home"></i>
           <span translate>Inicio</span>
         </a>
-        <a class="nav-item nav-link text-uppercase" routerLink="/about" routerLinkActive="active">
+        <a class="nav-item nav-link text-uppercase"
+           routerLink="/about"
+           routerLinkActive="active">
           <i class="fas fa-question-circle"></i>
           <span translate>Nosotros</span>
         </a>
       </div>
       <div class="navbar-nav ml-auto">
-        <app-language-selector inNavbar="true" menuClass="dropdown-menu dropdown-menu-right"></app-language-selector>
-        <div class="nav-item" ngbDropdown>
-          <a id="user-dropdown" class="nav-link" ngbDropdownToggle>
+        <app-language-selector inNavbar="true"
+                               menuClass="dropdown-menu dropdown-menu-right"></app-language-selector>
+        <div class="nav-item"
+             ngbDropdown>
+          <a id="user-dropdown"
+             class="nav-link"
+             ngbDropdownToggle>
             <i class="fas fa-user-circle"></i>
           </a>
-          <div ngbDropdownMenu aria-labelledby="user-dropdown" class="dropdown-menu dropdown-menu-right">
+          <div ngbDropdownMenu
+               aria-labelledby="user-dropdown"
+               class="dropdown-menu dropdown-menu-right">
             <h6 class="dropdown-header">
               <span translate>Ingresó como</span> <b>{{ username }}</b>
             </h6>
             <div class="dropdown-divider"></div>
-            <button class="dropdown-item" (click)="logout()" translate>Salir</button>
+            <button class="dropdown-item"
+                    (click)="logout()"
+                    translate>Salir</button>
           </div>
         </div>
       </div>
-    </div>
-  </nav>
-</header>
+    </div> -->
+  </div>
+</nav>

@@ -8,46 +8,41 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
-    use SoftDeletes;
+  use SoftDeletes;
 
+  // Mass Assignment
+  protected $fillable = ['name',];
+  protected $dates = ['deleted_at'];
 
-	// Mass Assignment
-	protected $fillable = ['name',];
-    protected $dates = ['deleted_at'];
+  // Validate Rule
+  public static function getValidateRule(Company $company = null)
+  {
+    $ignoreUnique = null;
 
-
-	// Validate Rule
-    public static function getValidateRule(Company $company=null){
-        if($company){
-            $ignore_unique = $company->id;
-        }else{
-            $ignore_unique = 'NULL';
-        }
-        $table_name = 'companies';
-        $validation_rule = [
-
-            'model.name' => 'required|unique:'.$table_name.',name,'.$ignore_unique.',id,deleted_at,NOT_NULL',
-
-
-        ];
-        if($company){
-
-        }
-        return $validation_rule;
+    if ($company) {
+      $ignoreUnique = $company->id;
     }
+    $tableName = 'companies';
+    $validationRule = [
 
-	public function users() {
-		return $this->hasMany('App\User');
-	}
-
-
+      'model.name' => 'required|unique:' . $tableName . ',name,' . $ignoreUnique . ',id,deleted_at,NOT_NULL',
 
 
+    ];
+    if ($company) {
+    }
+    return $validationRule;
+  }
 
+  public function users()
+  {
+    return $this->hasMany('App\User');
+  }
 
-	public static function getLists() {
-		$lists = [];
-		$lists['User'] = User::pluck( 'name' ,'id' );
-		return $lists;
-	}
+  public static function getLists()
+  {
+    $lists = [];
+    $lists['User'] = User::pluck('name', 'id');
+    return $lists;
+  }
 }

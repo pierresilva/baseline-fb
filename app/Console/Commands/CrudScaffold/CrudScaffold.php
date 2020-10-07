@@ -58,18 +58,18 @@ class CrudScaffold
   {
     $this->command->info("\n" . 'Testing...');
     $stubTxt = $this->files->get(__DIR__ . '/Stubs/test3.stub');
-    $output_path = base_path() . '/app/test.php';
+    $outputPath = base_path() . '/app/test.php';
     $stub_obj = new StubCompiler($stubTxt, $this->data->models[1]->relations[0]);
     $output = $stub_obj->compile();
-    $this->files->put($output_path, $output);
+    $this->files->put($outputPath, $output);
     dd('test is end');
   }
 
   private function setupProviders()
   {
     // app/Providers/AppServiceProvider.php
-    $output_path = base_path() . '/app/Providers/AppServiceProvider.php';
-    $original_src = $this->files->get($output_path);
+    $outputPath = base_path() . '/app/Providers/AppServiceProvider.php';
+    $original_src = $this->files->get($outputPath);
     $output = $original_src;
 
     $add_src = $this->files->get(__DIR__ . '/Stubs/app/Providers/AppServiceProvider_header.stub');
@@ -83,7 +83,7 @@ class CrudScaffold
     $output = preg_replace($replace_pattern, '$1$2$3' . $add_src . '$5', $output);
 
     if (!strpos($original_src, $add_src)) {
-      $this->files->put($output_path, $output);
+      $this->files->put($outputPath, $output);
     }
   }
 
@@ -107,10 +107,10 @@ class CrudScaffold
       if ($this->data->use_laravel_auth === true && $model->name === "user") {
         $this->deleteMigration('add_columns_to_users_table.php');
         $stubTxt = $this->files->get(__DIR__ . '/Stubs/database/migrations/Auth/yyyy_mm_dd_hhmmss_add_columns_to_users_table.stub');
-        $output_path = base_path() . '/database/migrations/' . date('Y_m_d_His') . '_add_columns_to_users_table.php';
+        $outputPath = base_path() . '/database/migrations/' . date('Y_m_d_His') . '_add_columns_to_users_table.php';
         $stub_obj = new StubCompiler($stubTxt, $model);
         $output = $stub_obj->compile();
-        $this->files->put($output_path, $output);
+        $this->files->put($outputPath, $output);
 
       } else {
 
@@ -119,14 +119,14 @@ class CrudScaffold
 
         if ($model->is_pivot) {
           $this->deleteMigration(NameResolver::solveName($model->name, 'name_name') . '_table.php');
-          $output_path = base_path() . '/database/migrations/' . date('Y_m_d_His') . '_create_' . NameResolver::solveName($model->name, 'name_name') . '_table.php';
+          $outputPath = base_path() . '/database/migrations/' . date('Y_m_d_His') . '_create_' . NameResolver::solveName($model->name, 'name_name') . '_table.php';
         } else {
           $this->deleteMigration(NameResolver::solveName($model->name, 'name_names') . '_table.php');
-          $output_path = base_path() . '/database/migrations/' . date('Y_m_d_His') . '_create_' . NameResolver::solveName($model->name, 'name_names') . '_table.php';
+          $outputPath = base_path() . '/database/migrations/' . date('Y_m_d_His') . '_create_' . NameResolver::solveName($model->name, 'name_names') . '_table.php';
         }
         $stub_obj = new StubCompiler($stubTxt, $model);
         $output = $stub_obj->compile();
-        $this->files->put($output_path, $output);
+        $this->files->put($outputPath, $output);
       }
     }
   }
@@ -152,7 +152,7 @@ class CrudScaffold
 
       // (i) /database/seeders/DatabaseSeeder.php
       $stubTxt = $this->files->get(__DIR__ . '/Stubs/database/seeders/DatabaseSeeder_add.stub');
-      $output_path = base_path() . '/database/seeders/DatabaseSeeder.php';
+      $outputPath = base_path() . '/database/seeders/DatabaseSeeder.php';
       $stub_obj = new StubCompiler($stubTxt, $model);
       $add_src = $stub_obj->compile();
 
@@ -161,26 +161,26 @@ class CrudScaffold
       $output = preg_replace($replace_pattern, '$1$2' . $add_src . '$3', $original_src);
 
       if (!strpos($original_src, $add_src)) {
-        $this->files->put($output_path, $output);
+        $this->files->put($outputPath, $output);
       }
 
       // (ii) /database/seeders/[Models]TableSeeder.php
       $stubTxt = $this->files->get(__DIR__ . '/Stubs/database/seeders/[Models]TableSeeder.stub');
       if ($model->is_pivot) {
-        $output_path = base_path() . '/database/seeders/' . NameResolver::solveName($model->name, 'NameName') . 'TableSeeder.php';
+        $outputPath = base_path() . '/database/seeders/' . NameResolver::solveName($model->name, 'NameName') . 'TableSeeder.php';
       } else {
-        $output_path = base_path() . '/database/seeders/' . NameResolver::solveName($model->name, 'NameNames') . 'TableSeeder.php';
+        $outputPath = base_path() . '/database/seeders/' . NameResolver::solveName($model->name, 'NameNames') . 'TableSeeder.php';
       }
       $stub_obj = new StubCompiler($stubTxt, $model);
       $output = $stub_obj->compile();
 
       //overwrite check
       if (!$this->command->option('force')) {   // no check if force option is selected
-        if ($this->files->exists($output_path)) {
-          throw new \Exception("Seed File is already exists![" . $output_path . "]");
+        if ($this->files->exists($outputPath)) {
+          throw new \Exception("Seed File is already exists![" . $outputPath . "]");
         }
       }
-      $this->files->put($output_path, $output);
+      $this->files->put($outputPath, $output);
     }
   }
 
@@ -197,8 +197,8 @@ class CrudScaffold
       // case using laravel auth
       if ($this->data->use_laravel_auth === true && $model->name === "user") {
 
-        $output_path = base_path() . '/app/Models/User.php';
-        $original_src = $this->files->get($output_path);
+        $outputPath = base_path() . '/app/Models/User.php';
+        $original_src = $this->files->get($outputPath);
         $output = $original_src;
 
         $stubTxt = $this->files->get(__DIR__ . '/Stubs/app/Auth/User01_use.stub');
@@ -228,23 +228,23 @@ class CrudScaffold
         $stub_obj = new StubCompiler($output, $model);
         $output = $stub_obj->compile();
 
-        $this->files->put($output_path, $output);
+        $this->files->put($outputPath, $output);
 
       } else {
 
         //create model file
         $stubTxt = $this->files->get(__DIR__ . '/Stubs/app/Models/[Model].stub');
-        $output_path = base_path() . '/app/Models/' . NameResolver::solveName($model->name, 'NameName') . '.php';
+        $outputPath = base_path() . '/app/Models/' . NameResolver::solveName($model->name, 'NameName') . '.php';
         $stub_obj = new StubCompiler($stubTxt, $model);
         $output = $stub_obj->compile();
 
         //overwrite check
         if (!$this->command->option('force')) {   // no check if force option is selected
-          if ($this->files->exists($output_path)) {
-            throw new \Exception("Model File is already exists![" . $output_path . "]");
+          if ($this->files->exists($outputPath)) {
+            throw new \Exception("Model File is already exists![" . $outputPath . "]");
           }
         }
-        $this->files->put($output_path, $output);
+        $this->files->put($outputPath, $output);
       }
     }
   }
@@ -261,17 +261,17 @@ class CrudScaffold
 
       //create controller file
       $stubTxt = $this->files->get(__DIR__ . '/Stubs/app/Http/Controllers/[Model]Controller.stub');
-      $output_path = base_path() . '/app/Http/Controllers/' . NameResolver::solveName($model->name, 'NameName') . 'Controller.php';
+      $outputPath = base_path() . '/app/Http/Controllers/' . NameResolver::solveName($model->name, 'NameName') . 'Controller.php';
       $stub_obj = new StubCompiler($stubTxt, $model);
       $output = $stub_obj->compile();
 
       //overwrite check
       if (!$this->command->option('force')) {
-        if ($this->files->exists($output_path)) {
-          throw new \Exception("Controller File is already exists![" . $output_path . "]");
+        if ($this->files->exists($outputPath)) {
+          throw new \Exception("Controller File is already exists![" . $outputPath . "]");
         }
       }
-      $this->files->put($output_path, $output);
+      $this->files->put($outputPath, $output);
     }
   }
 
@@ -283,23 +283,23 @@ class CrudScaffold
 
     $stubTxt = $this->files->get(__DIR__ . '/Stubs/resources/views/layouts/de_app.blade.stub');
     $output_folder = base_path() . '/resources/views/layouts';
-    $output_path = $output_folder . '/de_app.blade.php';
+    $outputPath = $output_folder . '/de_app.blade.php';
 
     if (!$this->files->exists($output_folder)) {
       $this->files->makeDirectory($output_folder);
     }
-    $this->files->put($output_path, $stubTxt);
+    $this->files->put($outputPath, $stubTxt);
 
     //(ii)alert --------------------------------------------------
 
     // $stubTxt = $this->files->get( __DIR__. '/Stubs/resources/views/_common/alert.blade.stub');
     // $output_dir = base_path().'/resources/views/_common/';
-    // $output_path = $output_dir.'alert.blade.php';
+    // $outputPath = $output_dir.'alert.blade.php';
 
     // //overwrite check
     // if( !$this->command->option('force') ){
-    //     if( $this->files->exists($output_path) ){
-    //         throw new \Exception("Controller File is already exists![".$output_path."]");
+    //     if( $this->files->exists($outputPath) ){
+    //         throw new \Exception("Controller File is already exists![".$outputPath."]");
     //     }
     // }
 
@@ -307,7 +307,7 @@ class CrudScaffold
     // if( !$this->files->exists($output_dir) ){
     //     $this->files->makeDirectory( $output_dir, $mode = 493, $recursive = false, $force = false);
     // }
-    // $this->files->put($output_path, $stubTxt );
+    // $this->files->put($outputPath, $stubTxt );
 
     //(iii)navi --------------------------------------------------
 
@@ -320,11 +320,11 @@ class CrudScaffold
             }
     */
     $stubTxt = $this->files->get(__DIR__ . '/Stubs/resources/views/layouts/de_navi.blade.stub');
-    $output_path = base_path() . '/resources/views/layouts/de_navi.blade.php';
+    $outputPath = base_path() . '/resources/views/layouts/de_navi.blade.php';
     $stub_obj = new StubCompiler($stubTxt, $setting_array);
     $output = $stub_obj->compile();
 
-    $this->files->put($output_path, $output);
+    $this->files->put($outputPath, $output);
 
     //(iv)authview --------------------------------------------------
 
@@ -376,8 +376,8 @@ class CrudScaffold
 
       if ($model->name === 'user' && $this->data->use_laravel_auth === true) {
         /* later
-                        $output_path = base_path().'/resources/views/auth/register.blade.php';
-                        $original_src = $this->files->get( $output_path );
+                        $outputPath = base_path().'/resources/views/auth/register.blade.php';
+                        $original_src = $this->files->get( $outputPath );
                         $output = $original_src;
 
                         $stubTxt = $this->files->get( __DIR__. '/Stubs/resources/views/auth/register_add.stub');
@@ -387,7 +387,7 @@ class CrudScaffold
                         $stub_obj = new StubCompiler( $output, $model );
                         $output = $stub_obj->compile();
 
-                        $this->files->put($output_path, $output );
+                        $this->files->put($outputPath, $output );
         */
       }
 
@@ -395,14 +395,14 @@ class CrudScaffold
         $stubTxt = $this->files->get(__DIR__ . '/Stubs/resources/views/[models]/' . $view_filename . '.stub');
         $output_dir = base_path() . '/resources/views/' . NameResolver::solveName($model->name, 'nameNames') . '/';
         $output_filename = $view_filename . '.php';
-        $output_path = $output_dir . $output_filename;
+        $outputPath = $output_dir . $output_filename;
         $stub_obj = new StubCompiler($stubTxt, $model);
         $output = $stub_obj->compile();
 
         //overwrite check
         if (!$this->command->option('force')) {
-          if ($this->files->exists($output_path)) {
-            throw new \Exception("View File is already exists![" . $output_path . "]");
+          if ($this->files->exists($outputPath)) {
+            throw new \Exception("View File is already exists![" . $outputPath . "]");
           }
         }
 
@@ -410,7 +410,7 @@ class CrudScaffold
         if (!$this->files->exists($output_dir)) {
           $this->files->makeDirectory($output_dir, $mode = 493, $recursive = false, $force = false);
         }
-        $this->files->put($output_path, $output);
+        $this->files->put($outputPath, $output);
       }
     }
   }
@@ -420,12 +420,12 @@ class CrudScaffold
   {
 
     $stubTxt = $this->files->get(__DIR__ . '/Stubs/routes/api_add.stub');
-    $output_path = base_path() . '/routes/api.php';
+    $outputPath = base_path() . '/routes/api.php';
     $stub_obj = new StubCompiler($stubTxt, $this->data);
     $output = $stub_obj->compile();
     $target_src = $this->files->get(base_path() . '/routes/api.php');
     if (!strpos($target_src, $output)) {
-      $this->files->append($output_path, $output);
+      $this->files->append($outputPath, $output);
     }
   }
 
@@ -442,18 +442,18 @@ class CrudScaffold
 
     // js - app.js
     $output = $this->files->get(__DIR__ . '/Stubs/resources/js/app_add.js.stub');
-    $output_path = base_path() . '/resources/js/app.js';
-    $target_src = $this->files->get($output_path);
+    $outputPath = base_path() . '/resources/js/app.js';
+    $target_src = $this->files->get($outputPath);
     if (!strpos($target_src, $output)) {
-      $this->files->append($output_path, $output);
+      $this->files->append($outputPath, $output);
     }
 
     // sass - app.scss
     $output = $this->files->get(__DIR__ . '/Stubs/resources/sass/app_add.scss.stub');
-    $output_path = base_path() . '/resources/sass/app.scss';
-    $target_src = $this->files->get($output_path);
+    $outputPath = base_path() . '/resources/sass/app.scss';
+    $target_src = $this->files->get($outputPath);
     if (!strpos($target_src, $output)) {
-      $this->files->append($output_path, $output);
+      $this->files->append($outputPath, $output);
     }
   }
 

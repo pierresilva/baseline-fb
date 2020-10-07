@@ -157,8 +157,8 @@
             ],
             "is_pivot": false,
             "schema_id_for_relation": 1,
-            "pos_x": 708,
-            "pos_y": 37,
+            "pos_x": 757,
+            "pos_y": 211,
             "_next_schema_id": 2
         },
         {
@@ -291,8 +291,36 @@
             "pos_x": 432,
             "pos_y": -2,
             "_next_schema_id": 5
+        },
+        {
+            "id": 6,
+            "name": "metteng",
+            "display_name": "Reuniones",
+            "use_soft_delete": true,
+            "schemas": [
+                {
+                    "id": 1,
+                    "name": "date",
+                    "display_name": "Fecha",
+                    "type": "string",
+                    "input_type": "text",
+                    "varidate": "",
+                    "faker_type": "",
+                    "nullable": true,
+                    "unique": false,
+                    "show_in_list": true,
+                    "show_in_detail": true,
+                    "belongsto": "",
+                    "parent_id": 6
+                }
+            ],
+            "is_pivot": false,
+            "schema_id_for_relation": 1,
+            "pos_x": 709,
+            "pos_y": 446,
+            "_next_schema_id": 2
         }
     ],
     "tool": "ER-DIAGRAM-TOOL",
-    "_next_model_id": 6
+    "_next_model_id": 7
 }
