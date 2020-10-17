@@ -69,3 +69,5 @@ Thumbs.db
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
+baseline-access_log
+baseline-error_log
