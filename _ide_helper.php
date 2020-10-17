@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 8.7.1.
+ * Generated for Laravel 8.10.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3380,6 +3380,17 @@
         {
                         /** @var \Illuminate\Cache\Repository $instance */
                         return $instance->tags($names);
+        }
+                    /**
+         * Determine if the current store supports tags.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function supportsTags()
+        {
+                        /** @var \Illuminate\Cache\Repository $instance */
+                        return $instance->supportsTags();
         }
                     /**
          * Get the default cache time.
@@ -11546,6 +11557,19 @@
                         $instance->dropIfExists($table);
         }
                     /**
+         * Drop columns from a table schema.
+         *
+         * @param string $table
+         * @param string|array $columns
+         * @return void 
+         * @static 
+         */ 
+        public static function dropColumns($table, $columns)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        $instance->dropColumns($table, $columns);
+        }
+                    /**
          * Drop all types from the database.
          *
          * @return void 
@@ -12984,7 +13008,7 @@
          * Create a signed route URL for a named route.
          *
          * @param string $name
-         * @param array $parameters
+         * @param mixed $parameters
          * @param \DateTimeInterface|\DateInterval|int|null $expiration
          * @param bool $absolute
          * @return string 
@@ -13914,7 +13938,7 @@
                     /**
          * Start a component rendering process.
          *
-         * @param \Illuminate\View\View|\Illuminate\Contracts\Support\Htmlable|\Closure|string $view
+         * @param \Illuminate\Contracts\View\View|\Illuminate\Contracts\Support\Htmlable|\Closure|string $view
          * @param array $data
          * @return void 
          * @static 
@@ -14350,6 +14374,34 @@
      *
      */ 
         class Str {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Collection {
+                    /**
+         * 
+         *
+         * @param mixed $perPage
+         * @param mixed $page
+         * @param mixed $options
+         * @static 
+         */ 
+        public static function paginate($perPage = 15, $page = null, $options = [])
+        {
+                        return \Illuminate\Support\Collection::paginate($perPage, $page, $options);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function recursive()
+        {
+                        return \Illuminate\Support\Collection::recursive();
+        }
          
     }
      
@@ -15685,6 +15737,21 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->forceCreate($attributes);
+            }
+             
+                /**
+             * Insert new records or update the existing ones.
+             *
+             * @param array $values
+             * @param array|string $uniqueBy
+             * @param array|null $update
+             * @return int 
+             * @static 
+             */ 
+            public static function upsert($values, $uniqueBy, $update = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->upsert($values, $uniqueBy, $update);
             }
              
                 /**
@@ -18102,6 +18169,18 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
                                 return $instance->useWritePdo();
+            }
+             
+                /**
+             * Clone the query.
+             *
+             * @return static 
+             * @static 
+             */ 
+            public static function clone()
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->clone();
             }
              
                 /**

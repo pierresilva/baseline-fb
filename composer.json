@@ -9,6 +9,7 @@
   "license": "MIT",
   "require": {
     "php": "^7.3",
+    "ext-json": "*",
     "fideloper/proxy": "^4.2",
     "fruitcake/laravel-cors": "^2.0",
     "guzzlehttp/guzzle": "^7.0.1",
@@ -16,7 +17,7 @@
     "laravel/tinker": "^2.0",
     "pierresilva/laravel-access-control": "dev-master",
     "pierresilva/laravel-jwt-auth": "dev-master",
-    "ext-json": "*"
+    "rap2hpoutre/laravel-log-viewer": "^1.7"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.8",
